@@ -1,0 +1,47 @@
+.product-card{
+    font-family: "Roboto",sans-serif;
+    width: 100%;
+    list-style-type: none;
+    margin-top: 3px;
+    margin-bottom: 6px;
+}
+.productImg{
+    height: 200px;
+    width: 170px;
+}
+
+.mrp{
+    text-decoration: line-through;
+}
+
+.price{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.product-card>p:nth-of-type(1){
+    font-style: italic;
+}
+
+.product-card>p{
+    color: grey;
+    font-size: 13px;
+    overflow: auto;
+    margin: 5px;
+}
+
+.link-item{
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+
+.share-btn{
+    background-color: rgb(100, 100, 255);
+    border-style: solid;
+    border-width: 0;
+    border-radius: 4px;
+    width:90px;
+    height: 20px;
+    color: white;
+}

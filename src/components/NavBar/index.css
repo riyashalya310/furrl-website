@@ -1,0 +1,26 @@
+.nav-horizontal{
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+}
+
+.nav-horizontal img{
+    align-self: center;
+    align-items: center;
+    margin-left: 30%;
+}
+
+.nav-horizontal>button:nth-of-type(1){
+    margin-left: 1%;
+}
+
+.nav-horizontal>button:nth-of-type(2){
+    margin-left: 25%;
+}
+
+
+.nav-buttons{
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0;
+}
