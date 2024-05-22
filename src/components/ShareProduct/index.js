@@ -2,7 +2,7 @@ import React from "react";
 import './index.css'
 
 const SharePopup = ({ productDetails, onClose }) => {
-  const { title, url, image } = productDetails; // Assuming these properties exist
+  const { title } = productDetails; // Assuming these properties exist
 
   const shareUrl = `https://your-website.com/product/${productDetails.id}`; // Replace with your actual sharing URL
 

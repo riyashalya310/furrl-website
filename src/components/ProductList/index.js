@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import ProductCard from "../ProductCard";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { ThreeDots } from "react-loader-spinner";
 
 const apiConstants = {
   initial: "INITIAL",
@@ -155,7 +153,7 @@ const ProductList = () => {
   useEffect(() => {
     apiCallFilters();
     apiCallProducts();
-  }, []);
+  });
 
   const renderFiltersSuccessView = () => {
     const { data } = apiResponseFilters;
@@ -198,77 +196,77 @@ const ProductList = () => {
     }
   };
 
-  const fetchMoreData = async () => {
-    setPage(page=>page + 1);
-    const url = "https://api.furrl.in/api/v2/listing/getListingProducts";
-    const jsonData = {
-      input: {
-        page,
-        pageSize: 10,
-        filters: [],
-        id: "#HomeHunts",
-        entity: "vibe",
-      },
-    };
-    const options = {
-      headers: {
-        accept: "application/json",
-        "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7",
-        appversion: "1.0.234+145",
-        "cache-control": "no-cache",
-        "content-type": "application/json",
-        deviceid: "",
-        pragma: "no-cache",
-        priority: "u=1, i",
-        "sec-ch-ua":
-          '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-        "sec-ch-ua-mobile": "?1",
-        "sec-ch-ua-platform": '"Android"',
-        "sec-fetch-dest": "document",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-site",
-        visitid: "2eE862pT1Z3eEHqcj2Aib",
-      },
-      referrer: "https://web.furrl.in/",
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: JSON.stringify(jsonData),
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
-    };
-    const response = await fetch(url, options);
-    if (response.ok) {
-      const jsonResponse = await response.json();
-      console.log(jsonResponse)
-      const filteredData =
-        jsonResponse.data.getListingProducts.products.map((item) => ({
-          id: item.id,
-          mrp: item.MRP.value,
-          currency: item.MRP.currency,
-          discountPercent: item.discountPercent,
-          images: item.images.map((img) => ({
-            src: img.src,
-            height: img.height,
-            width: img.width,
-          })),
-          price: item.price.value,
-          title: item.title,
-          vendor: item.vendor,
-        }));
-      setAPIResponseProducts({
-        status: apiConstants.success,
-        data: apiResponseProducts.data.filteredDataProducts.concat(
-          filteredData
-        ),
-        errorMsg: null,
-      });
-    } else {
-      setAPIResponseProducts({
-        status: apiConstants.failure,
-        errorMsg: "Products API failed",
-      });
-    }
-  };
+  // const fetchMoreData = async () => {
+  //   setPage(page=>page + 1);
+  //   const url = "https://api.furrl.in/api/v2/listing/getListingProducts";
+  //   const jsonData = {
+  //     input: {
+  //       page,
+  //       pageSize: 10,
+  //       filters: [],
+  //       id: "#HomeHunts",
+  //       entity: "vibe",
+  //     },
+  //   };
+  //   const options = {
+  //     headers: {
+  //       accept: "application/json",
+  //       "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7",
+  //       appversion: "1.0.234+145",
+  //       "cache-control": "no-cache",
+  //       "content-type": "application/json",
+  //       deviceid: "",
+  //       pragma: "no-cache",
+  //       priority: "u=1, i",
+  //       "sec-ch-ua":
+  //         '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+  //       "sec-ch-ua-mobile": "?1",
+  //       "sec-ch-ua-platform": '"Android"',
+  //       "sec-fetch-dest": "document",
+  //       "sec-fetch-mode": "cors",
+  //       "sec-fetch-site": "same-site",
+  //       visitid: "2eE862pT1Z3eEHqcj2Aib",
+  //     },
+  //     referrer: "https://web.furrl.in/",
+  //     referrerPolicy: "strict-origin-when-cross-origin",
+  //     body: JSON.stringify(jsonData),
+  //     method: "POST",
+  //     mode: "cors",
+  //     credentials: "omit",
+  //   };
+  //   const response = await fetch(url, options);
+  //   if (response.ok) {
+  //     const jsonResponse = await response.json();
+  //     console.log(jsonResponse)
+  //     const filteredData =
+  //       jsonResponse.data.getListingProducts.products.map((item) => ({
+  //         id: item.id,
+  //         mrp: item.MRP.value,
+  //         currency: item.MRP.currency,
+  //         discountPercent: item.discountPercent,
+  //         images: item.images.map((img) => ({
+  //           src: img.src,
+  //           height: img.height,
+  //           width: img.width,
+  //         })),
+  //         price: item.price.value,
+  //         title: item.title,
+  //         vendor: item.vendor,
+  //       }));
+  //     setAPIResponseProducts({
+  //       status: apiConstants.success,
+  //       data: apiResponseProducts.data.filteredDataProducts.concat(
+  //         filteredData
+  //       ),
+  //       errorMsg: null,
+  //     });
+  //   } else {
+  //     setAPIResponseProducts({
+  //       status: apiConstants.failure,
+  //       errorMsg: "Products API failed",
+  //     });
+  //   }
+  // };
 
   const renderProductsSuccessView = (data) => {
     return (
